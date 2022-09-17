@@ -52,7 +52,7 @@ do{
         break;
 
         case "5":
-       
+        ChangeTel(hotelID)
         break;
 
         case "6":
@@ -156,24 +156,23 @@ function ShowAllHotelsByCategory(rank){
     return alert(`No Rank ${rank} possui os Hotéis: ${hotels}`)
 }
 
+function ChangeTel(id, telefone){ 
+    id = prompt("Qual o ID do Hotel ?")
 
-function OrderByYear(){ 
-    let SortBooksName = []
-    for(let i = 0; i < bookYear.length + 1; i++){
-        if(bookYear[i] > bookYear[i + 1]){
-            SortBooksName.unshift(bookName[i + 1])
-            SortBooksName.push(bookName[i])
-            SortBooksName.pop()
-        }
+    hotelID.forEach(FindID)
 
-        if(bookYear[i] < bookYear[i + 1]){
-            SortBooksName.unshift(bookName[i])
-            SortBooksName.push(bookName[i + 1])
+    if(FindID == false){
+        return alert(`ID não registrado`)
+    }
+
+    function FindID(item, index){
+        telefone = prompt("Digite o novo telefone")
+        
+        if(id == item){
+            hotelTel[index] = telefone
+            return FindID = true
         }
     }
 
-    let SortBooks = bookYear
-    SortBooks = SortBooks.sort()
-
-    return alert(`{${SortBooks}} {${SortBooksName}}`)
+    return alert(`Telefone atualizado com sucesso !`)
 }
