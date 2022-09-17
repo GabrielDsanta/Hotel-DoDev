@@ -1,7 +1,5 @@
 
 
-
-
 let hotelName = []
 let hotelID = []
 let hotelRank = []
@@ -63,20 +61,27 @@ do{
 
 }while(choice)
 
-function cadastroHotel(){
+function cadastroHotel(id, lista){
+    id = prompt("Cadastre o ID do Hotel")
+    lista = hotelID
+    Verificate(id, lista)
     hotelName.push(prompt("Cadastre o nome do Hotel"))
-    hotelID.push(prompt("Cadastre o ID do Hotel"))
     hotelRank.push(prompt("Cadastre a Categoria de 1 ~ 5 do Hotel"))
     hotelAddress.push(prompt("Cadastre o Endereço do Hotel"))
     hotelTel.push(prompt("Cadastre o Telefone do Hotel"))
 }
 
-function reserveHotel(){
+function reserveHotel(id, lista, entrada, saida){
+    lista = reserveID
+
     reserveID.push(prompt("Qual o ID da Reserva ?"))
-    reserveIDHotel.push(prompt("Qual o ID do Hotel que você quer Reservar ?"))
+    id = prompt("Qual o ID do Hotel que você quer Reservar ?")
+    Verificate(id, lista)
+
     reserveName.push(prompt("Qual o seu Nome ?"))
-    reserveEntry.push(prompt("Qual o dia de Entrada ?"))
-    reserveOut.push(prompt("Qual o dia de Saída ?"))
+    entrada = Number(prompt("Qual o dia de Entrada ?"))
+    saida = Number(prompt("Qual o dia de Saída ?"))
+    VerificateDay(entrada, saida)
 }
 
 function ShowReserveByID(id){
@@ -167,7 +172,7 @@ function ChangeTel(id, telefone){
 
     function FindID(item, index){
         telefone = prompt("Digite o novo telefone")
-        
+
         if(id == item){
             hotelTel[index] = telefone
             return FindID = true
@@ -175,4 +180,29 @@ function ChangeTel(id, telefone){
     }
 
     return alert(`Telefone atualizado com sucesso !`)
+}
+
+function Verificate(id, lista){
+    let VerificateID = lista.includes(id)
+
+    if(VerificateID == true || hotelID.length == 0){
+        alert("ID Inválido")
+        choice2 = prompt("1 /// Cadastrar Hotel /// 2 Reservar Hotel /// Enter para avançar")
+    }
+
+    else{
+        lista.push(id)
+    }
+}
+
+function VerificateDay(entrada, saida){
+    if(entrada > saida){
+        alert("Dia inválido")
+        choice2 = prompt("1 /// Cadastrar Hotel /// 2 Reservar Hotel /// Enter para avançar")
+    }
+
+    else{
+        reserveEntry.push(entrada)
+        reserveOut.push(saida)
+    }
 }
